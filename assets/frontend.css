@@ -1,0 +1,630 @@
+/* Video Presentation Widget - Complete Frontend Styles v2.0 */
+
+/* ========================================
+   BASE WIDGET STYLES
+   ======================================== */
+
+.vpw-widget {
+    position: fixed;
+    z-index: 99999998;
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.2;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.vpw-widget.vpw-bottom-right {
+    bottom: 20px;
+    right: 20px;
+}
+
+.vpw-widget.vpw-bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+/* Trigger Button */
+.vpw-trigger {
+    position: relative;
+    padding: 0 !important;
+    margin: 0;
+    display: block !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 2;
+    border: 4px solid var(--vpw-primary-color) !important;
+    background: var(--vpw-primary-color);
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.34, 1.96, 0.64, 1) !important;
+}
+
+.vpw-trigger:hover, 
+.vpw-trigger:focus {
+    background: transparent !important;
+}
+
+.vpw-trigger:active {
+    transform: scale(0.95);
+}
+
+.vpw-trigger-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* CTA Container (Hover Text) */
+.vpw-cta-container {
+    position: absolute;
+    box-sizing: border-box;
+    height: 80px;
+    top: calc(50% - 40px);
+    font-size: 16px;
+    color: #0f172a;
+    display: flex;
+    border-radius: 60px;
+    max-width: calc(100vw - 40px);
+    overflow: hidden;
+    align-items: center;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.25s ease-out;
+    padding: 0 120px 0 30px;
+    cursor: pointer;
+}
+
+.vpw-bottom-right .vpw-cta-container {
+    right: 0;
+}
+
+.vpw-bottom-left .vpw-cta-container {
+    left: 0;
+    padding: 0 30px 0 120px;
+}
+
+.vpw-widget:hover .vpw-cta-container {
+    visibility: visible;
+    opacity: 1;
+}
+
+.vpw-cta-bg {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 60px;
+    background: var(--vpw-primary-color);
+    transition: width 0.5s ease-out;
+    backdrop-filter: blur(10px);
+}
+
+.vpw-bottom-right .vpw-cta-bg {
+    right: 0;
+}
+
+.vpw-bottom-left .vpw-cta-bg {
+    left: 0;
+}
+
+.vpw-cta-label {
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+}
+
+.vpw-cta-icon {
+    position: relative;
+    z-index: 1;
+    fill: currentColor;
+    width: 0.8em;
+    height: 0.8em;
+    margin-left: 10px;
+}
+
+.vpw-bottom-left .vpw-cta-icon {
+    margin-left: 0;
+    margin-right: 10px;
+    order: -1;
+    transform: rotate(180deg);
+}
+
+/* ========================================
+   MODAL STYLES
+   ======================================== */
+
+.vpw-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 99999998;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.vpw-modal-overlay.vpw-active {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.vpw-modal {
+    position: fixed;
+    background: #000;
+    border-radius: 10px;
+    width: 340px !important;
+    height: 650px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.vpw-bottom-right .vpw-modal {
+    bottom: 20px;
+    right: 20px;
+}
+
+.vpw-bottom-left .vpw-modal {
+    bottom: 20px;
+    left: 20px;
+}
+
+.vpw-modal-overlay.vpw-active .vpw-modal {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.vpw-modal-content {
+    padding: 0;
+    background: #000;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* ========================================
+   VIDEO CONTAINER
+   ======================================== */
+
+.vpw-video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+#vpw-video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#vpw-video-player video,
+#vpw-video-player iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+}
+
+/* ========================================
+   VIDEO CONTROLS & OVERLAYS
+   ======================================== */
+
+/* Progress Bar */
+.vpw-video-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 10;
+    cursor: pointer;
+}
+
+.vpw-video-progress-bar {
+    height: 100%;
+    background: var(--vpw-primary-color);
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* Video Title (Under Progress Bar) */
+.vpw-video-title-overlay {
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    right: 15px;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    z-index: 20;
+    opacity: 0;
+    animation: vpw-fadeIn 0.5s ease 0.5s forwards;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes vpw-fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Top Right Controls */
+.vpw-video-top-controls {
+    position: absolute;
+    top: 50px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 30;
+}
+
+.vpw-control-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(55, 65, 81, 0.9) !important;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.vpw-control-btn:hover {
+    background: rgba(75, 85, 99, 0.95) !important;
+    transform: scale(1.08);
+}
+
+.vpw-control-btn svg {
+    width: 22px;
+    height: 22px;
+    stroke: white;
+    fill: none;
+}
+
+.vpw-control-btn .vpw-sound-on,
+.vpw-control-btn .vpw-sound-off {
+    display: block;
+}
+
+.vpw-control-btn .vpw-sound-off {
+    display: none;
+}
+
+/* Play Button Overlay (Center) */
+.vpw-play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 25;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.vpw-play-overlay:hover {
+    background: rgba(0, 0, 0, 0.85);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.vpw-play-overlay svg {
+    width: 36px;
+    height: 36px;
+    color: white;
+    fill: white;
+    margin-left: 4px;
+}
+
+.vpw-play-overlay.vpw-hidden {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+}
+
+/* Replay Overlay */
+.vpw-replay-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 25;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.vpw-replay-overlay.vpw-show {
+    display: flex !important;
+}
+
+.vpw-replay-overlay:hover {
+    background: rgba(0, 0, 0, 0.85);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.vpw-replay-icon {
+    width: 40px;
+    height: 40px;
+    color: white;
+    stroke: white;
+}
+
+/* ========================================
+   VIDEO BUTTONS (Multi-Video Support)
+   ======================================== */
+
+.vpw-video-buttons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5%;
+    padding-bottom: calc(5% + 76px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    background-image: linear-gradient(to top, #000, #0000);
+}
+
+.vpw-video-buttons.vpw-hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Individual Video Button */
+.vpw-video-btn {
+    width: 100%;
+    padding: 16px 24px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    position: relative;
+}
+
+.vpw-video-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.1);
+}
+
+.vpw-video-btn:active {
+    transform: translateY(0);
+}
+
+/* Active Button Style */
+.vpw-video-btn.vpw-active {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    filter: brightness(1.15);
+}
+
+.vpw-video-btn.vpw-active::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* ========================================
+   TOGGLE ACTIONS BUTTON
+   ======================================== */
+
+.vpw-toggle-actions {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 56px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 3px solid var(--vpw-primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 15;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(8px);
+    pointer-events: auto;
+}
+
+.vpw-toggle-actions:hover {
+    background: rgba(0, 0, 0, 0.95);
+    transform: translateX(-50%) scale(1.08);
+    box-shadow: 0 4px 20px rgba(253, 186, 116, 0.5);
+}
+
+.vpw-toggle-actions svg {
+    width: 28px;
+    height: 28px;
+    color: var(--vpw-primary-color);
+    fill: var(--vpw-primary-color);
+    stroke: var(--vpw-primary-color);
+    transition: transform 0.3s ease;
+}
+
+.vpw-toggle-actions.vpw-expanded svg {
+    transform: rotate(180deg);
+}
+
+/* ========================================
+   LOADING SPINNER
+   ======================================== */
+
+.vpw-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+}
+
+.vpw-loading::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 4px solid var(--vpw-primary-color);
+    border-color: var(--vpw-primary-color) transparent var(--vpw-primary-color) transparent;
+    animation: vpw-spin 1.2s linear infinite;
+}
+
+@keyframes vpw-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
+
+@media (max-width: 768px) {
+    .vpw-modal {
+        width: calc(100vw - 30px) !important;
+        max-width: 340px;
+        height: auto;
+        max-height: 650px;
+        bottom: 15px !important;
+    }
+    
+    .vpw-bottom-right .vpw-modal {
+        right: 15px !important;
+    }
+    
+    .vpw-bottom-left .vpw-modal {
+        left: 15px !important;
+    }
+    
+    .vpw-video-buttons {
+        padding: 12px 15px 15px 15px;
+        padding-bottom: calc(5% + 76px);
+        gap: 8px;
+    }
+    
+    .vpw-video-btn {
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+    
+    .vpw-cta-container {
+        display: none !important;
+    }
+    
+    .vpw-widget {
+        bottom: 15px;
+    }
+    
+    .vpw-widget.vpw-bottom-right {
+        right: 15px;
+    }
+    
+    .vpw-widget.vpw-bottom-left {
+        left: 15px;
+    }
+    
+    .vpw-video-title-overlay {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .vpw-modal {
+        width: calc(100vw - 20px) !important;
+        max-width: 340px;
+        bottom: 10px !important;
+    }
+    
+    .vpw-bottom-right .vpw-modal {
+        right: 10px !important;
+    }
+    
+    .vpw-bottom-left .vpw-modal {
+        left: 10px !important;
+    }
+    
+    .vpw-video-btn {
+        padding: 12px 18px;
+        font-size: 13px;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .vpw-trigger,
+    .vpw-cta-container,
+    .vpw-modal-overlay,
+    .vpw-modal,
+    .vpw-video-btn,
+    .vpw-toggle-actions {
+        transition: none;
+    }
+    
+    .vpw-video-title-overlay {
+        animation: none;
+        opacity: 1;
+    }
+}
