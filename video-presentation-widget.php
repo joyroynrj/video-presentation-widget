@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Video Presentation Widget
- * Plugin URI: https://github.com/yourusername/video-presentation-widget
+ * Plugin URI: https://github.com/joyroynrj/video-presentation-widget
  * Description: A professional multi-video presentation widget with GitHub-based automatic updates
  * Version: 2.0.0
  * Author: Joy Roy
@@ -10,7 +10,7 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: video-presentation-widget
  * Domain Path: /languages
- * Update URI: https://github.com/yourusername/video-presentation-widget
+ * Update URI: https://github.com/joyroynrj/video-presentation-widget
  */
 
 // Exit if accessed directly
@@ -25,7 +25,7 @@ define('VPW_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('VPW_PLUGIN_FILE', __FILE__);
 
 // GitHub repository details for updates
-define('VPW_GITHUB_USERNAME', 'yourusername'); // Change this
+define('VPW_GITHUB_USERNAME', 'joyrynrj'); // Change this
 define('VPW_GITHUB_REPO', 'video-presentation-widget'); // Change this
 
 /**

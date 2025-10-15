@@ -1,5 +1,5 @@
 /**
- * Video Presentation Widget - Frontend JavaScript v2.1
+ * Video Presentation Widget - Frontend JavaScript v2.0.0
  * Multi-video support with YouTube API integration
  */
 (function($) {
